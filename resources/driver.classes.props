@@ -1,0 +1,10 @@
+#DataModel
+textdatamodel=main.data.model.TextDataModel
+#DataAppender
+textdataappender=main.data.appender.TextDataAppender
+#DataSplitter
+loo=main.data.splitter.LOODataSplitter
+#Recommender
+bpr_baseline=main.recommender.BPR_baseline
+#Evaluator
+hitrate=main.recommenderEvaluator.HitRateEvaluator
