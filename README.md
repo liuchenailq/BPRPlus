@@ -1,7 +1,7 @@
 BPRPlus
 ==========
 
-**BPRPlus**  是一个开源的Java库，专注于**推荐排序**问题，目标是支持基于多种隐式反馈的BPR变形算法。 
+**BPRPlus**  是一个开源的Java库，专注于**推荐排序**问题，目标是为基于多种隐式反馈的各种BPR变形算法提供快速实现。 
 
 系统架构借鉴[LibRec](https://github.com/guoguibing/librec)，一个领先的推荐系统开源库。
 
@@ -16,5 +16,7 @@ BPRPlus
 * 2.并行计算：系统内部应用并行计算解决性能问题
 * 3.支持多种隐式反馈：支持多种隐式反馈数据的读取
 * 4.结果可视化：训练过程的loss可视化、评价指标可视化
+
+<div style="text-align:center;"><img src="http://librec.net/images/modules.jpg" width="500" /> </div>
 
 *****
