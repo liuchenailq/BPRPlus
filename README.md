@@ -10,6 +10,13 @@ BPRPlus
 |E-mail|2422701543@qq.com, hdu.liuchen2020@gmail.com
 
 *****
+
+## 运行环境
+
+* 1.Java 1.8：基础的Java环境
+* 2.python3：调用python脚本完成结果可视化
+
+*****
 ## BPRPlus主要特性如下
 
 * 1.基于配置文件：通过配置文件控制系统的所有参数
