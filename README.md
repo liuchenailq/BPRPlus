@@ -1,9 +1,9 @@
 BPRPlus
 ==========
 
-**BPRPlus**  是一个开源的Java库，专注于**推荐排序**问题，目标是为基于多种隐式反馈的各种BPR变形算法提供快速实现。 
+**BPRPlus**  是一个开源的Java库，专注于**推荐排序**问题，目标是为基于多种隐式反馈的各种BPR变形算法提供快速实现.
 
-系统架构借鉴[LibRec](https://github.com/guoguibing/librec)，一个领先的推荐系统开源库。
+系统架构借鉴[LibRec](https://github.com/guoguibing/librec)，一个领先的推荐系统开源库.
 
 |作者|刘臣|
 |---|---
@@ -20,3 +20,17 @@ BPRPlus
 <div style="text-align:center;"><img src="https://github.com/liuchenailq/lcrs/blob/master/resource/BPRPlus%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B.png" width="500" /> </div>
 
 *****
+## 代码示例
+
+通过简单的几行代码，你就可以执行基本的BPR算法.
+<pre>
+public void main(String[] args) throws Exception {
+	   Configuration conf = new Configuration();
+		 conf.addResource("recommender/bpr.properties");
+		 RecommenderJob job = new RecommenderJob(conf);
+		 job.runJob();
+}
+</pre>
+
+
+
