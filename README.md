@@ -25,7 +25,7 @@ BPRPlus
 通过简单的几行代码，你就可以执行基本的BPR算法.
 <pre>
 public void main(String[] args) throws Exception {
-	   Configuration conf = new Configuration();
+	         Configuration conf = new Configuration();
 		 conf.addResource("recommender/bpr.properties");
 		 RecommenderJob job = new RecommenderJob(conf);
 		 job.runJob();
