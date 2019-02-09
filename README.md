@@ -1,3 +1,6 @@
+BPRPlus
+==========
+
 **BPRPlus**  是一个开源的Java库，目标是支持基于多种隐式反馈的BPR变形算法。 
 
 在此特别感谢[LibRec团队](https://github.com/guoguibing/librec)。
