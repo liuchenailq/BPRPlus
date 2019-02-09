@@ -17,6 +17,6 @@ BPRPlus
 * 3.支持多种隐式反馈：支持多种隐式反馈数据的读取
 * 4.结果可视化：训练过程的loss可视化、评价指标可视化
 
-<div style="text-align:center;"><img src="https://github.com/liuchenailq/lcrs/blob/master/resource/pictures/BPRPlus%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B.png" width="500" /> </div>
+<div style="text-align:center;"><img src="https://github.com/liuchenailq/lcrs/blob/master/resource/BPRPlus%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B.png" width="500" /> </div>
 
 *****
