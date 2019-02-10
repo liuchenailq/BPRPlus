@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/junit-4.12.jar" sourcepath="C:/Users/liucheng/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/hamcrest-all-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/commons-lang-2.6.jar" sourcepath="C:/Users/liucheng/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/commons-cli-1.3.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/fastutil-8.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/guava-15.0.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/librec-3.0.0/lib/okio-1.14.1.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/BPRplusView/lib/happy.coding.utils.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/BPRplusView/lib/json-simple.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/BPRplusView/lib/jfreechart-1.0.19/lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/BPRplusView/lib/jfreechart-1.0.19/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="D:/JavaWork/BPRplusView/lib/fastjson-1.2.56.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
