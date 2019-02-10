@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 
 import main.configure.Configuration;
 import main.data.model.AbstractDataModel;
+import main.data_structure.RecommendList;
 import main.recommender.AbstractTopNRecommender;
 import main.recommenderEvaluator.AbstractRecommenderEvaluator;
 import main.util.DriverClassUtil;
@@ -91,10 +92,12 @@ public class RecommenderJob {
 			LOG.info("开始进行模型评价");
 			String[] evaluators = conf.getStrings("rec.evaluator.classes");
 			evaluateResults = new HashMap<String, Double>();
+			RecommendList recommendList = recommender.recommender();
 			for(String eval : evaluators) {
 				//根据eval生成AbstactRecommenderEvaluator实例
 				AbstractRecommenderEvaluator evaluator = ReflectionUtil.newInstance((Class<AbstractRecommenderEvaluator>)DriverClassUtil.getClass(eval));
-				double value = evaluator.evaluate(recommender, false);
+				evaluator.setConf(conf);
+				double value = evaluator.evaluate(recommender.getTruthList(), recommendList);
 				evaluateResults.put(eval, value);
 				LOG.info(evaluator.getClass().getSimpleName() + ": " + value);
 			}

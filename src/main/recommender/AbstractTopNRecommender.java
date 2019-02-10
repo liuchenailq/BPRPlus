@@ -13,6 +13,7 @@ import org.apache.commons.logging.LogFactory;
 import com.google.common.collect.BiMap;
 import main.configure.Configuration;
 import main.data.model.AbstractDataModel;
+import main.data_structure.RecommendList;
 import main.data_structure.SparseMatrix;
 import main.recommenderEvaluator.AbstractRecommenderEvaluator;
 import main.util.ChartUtil;
@@ -61,17 +62,14 @@ public abstract class AbstractTopNRecommender {
 	
 	public AbstractDataModel dataModel;
 	
-	/** 推荐列表 */
-	private List<List<KeyValue<Integer, Double>>> recommenderList;
-	/** 真实列表 */
-	private List<List<KeyValue<Integer, Double>>> truthList;
-	
 	/** 如果为true,则在每次迭代之后都要进行模型评价 */
 	public boolean evaluateIsRealTime;
 	/** 记录每次迭代后的评价结果 */
 	public Map<String, List<Double>> evaluateResults;
 	/** 是否绘制评价折线图 */
 	public boolean drawEvaluate;
+	/** 真实测试集 */
+	public RecommendList truthList;
 	
 	/**
 	 * 建立推荐：推荐模块的入口函数
@@ -149,7 +147,7 @@ public abstract class AbstractTopNRecommender {
 	/**
 	 * 为所有用户推荐TopN个物品
 	 */
-	public List<List<KeyValue<Integer, Double>>> recommender() {
+	public RecommendList recommender() {
 		List<List<KeyValue<Integer, Double>>> recommendedList = new ArrayList<>(userCount);
 		List<Integer> list = new ArrayList<Integer>(userCount);
 		for(int u = 0; u < userCount; u++) {
@@ -172,16 +170,20 @@ public abstract class AbstractTopNRecommender {
 			//取前TopN项
 			recommendedList.set(userId, ListUtil.sortKeyValueListTopK(itemValueList, true, TopN));
 		});
-		return recommendedList;
+		return new RecommendList(recommendedList);
 	}
 	
-	public List<List<KeyValue<Integer, Double>>> getTruthList(){
+	/**
+	 * 真实测试集
+	 * @return
+	 */
+	public RecommendList getTruthList(){
 		if(truthList == null) {
 			//将testMatrix转化ArrayList<ArrayList<KeyValue<Integer, Double>>>
-			truthList = new ArrayList<>(userCount);
+			List<List<KeyValue<Integer, Double>>> tempList = new ArrayList<>(userCount);
 			List<Integer> list = new ArrayList<Integer>(userCount);
 			for(int u = 0; u< userCount; u++) {
-				truthList.add(new ArrayList<KeyValue<Integer, Double>>());
+				tempList.add(new ArrayList<KeyValue<Integer, Double>>());
 				list.add(u);
 			}
 			
@@ -190,34 +192,14 @@ public abstract class AbstractTopNRecommender {
 				for(Entry<Integer, Double> entry: testMatrix.getViewRow(u)) {
 					items.add(new KeyValue<Integer, Double>(entry.getKey(), entry.getValue()));
 				}
-				truthList.set(u, items);
+				tempList.set(u, items);
 			});
 			
-//			for(int u = 0; u< userCount; u++) {
-//				ArrayList<KeyValue<Integer, Double>> items = new ArrayList<KeyValue<Integer, Double>>();
-//				for(Entry<Integer, Double> entry: testMatrix.getViewRow(u)) {
-//					items.add(new KeyValue<Integer, Double>(entry.getKey(), entry.getValue()));
-//				}
-//				truthList.set(u, items);
-//			}
-			
+			truthList = new RecommendList(tempList);
 		}
 		return truthList;
 	}
 	
-	/**
-	 * 得到推荐列表
-	 * @param isRealTime 如果为true,每次评价前都要得到新的recommenderList，满足每次迭代需要评价的需求
-	 * @return
-	 */
-	public List<List<KeyValue<Integer, Double>>> getRecommenderList(boolean isRealTime){
-		if(recommenderList == null || isRealTime) {
-			recommenderList = recommender();
-		}
-		return recommenderList;
-	}
-	
-
 	/**
 	 * 将此函数加到具体的trainModel()中,位于迭代的循环内
 	 * 如果isRealTime为true，则每次迭代后进行模型评价，
@@ -230,10 +212,12 @@ public abstract class AbstractTopNRecommender {
 		if(isRealTime) {
 			LOG.info("第" + iter + "次迭代后的模型评价信息如下：");
 			String[] evaluators = conf.getStrings("rec.evaluator.classes");
+			RecommendList recommendList = this.recommender();
 			for(String eval : evaluators) {
 				//根据eval生成AbstactRecommenderEvaluator实例
 				AbstractRecommenderEvaluator evaluator = ReflectionUtil.newInstance((Class<AbstractRecommenderEvaluator>)DriverClassUtil.getClass(eval));
-				double value = evaluator.evaluate(this, true);
+				evaluator.setConf(conf);
+				double value = evaluator.evaluate(this.getTruthList(), recommendList);
 				evaluateResults.get(eval).add(value);
 				LOG.info(evaluator.getClass().getSimpleName() + ": " + value);
 			}

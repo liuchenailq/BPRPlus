@@ -29,6 +29,19 @@ import happy.coding.math.Randoms;
  * @author Felix and Keqiang Wang
  */
 public class ListUtil {
+	
+	/**
+	 * ·µ»Ø¼ü¼¯ºÏ
+	 * @param list
+	 * @return
+	 */
+	public static Set<Integer> getKeySet(List<KeyValue<Integer, Double>> list){
+		Set<Integer> set = new HashSet<Integer>();
+		for(KeyValue<Integer, Double> entry : list) {
+			set.add(entry.getKey());
+		}
+		return set;
+	}
 
     /**
      * @param capacity a given capacity
