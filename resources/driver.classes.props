@@ -9,3 +9,5 @@ bpr_baseline=main.recommender.BPR_baseline
 #Evaluator
 hitrate=main.recommenderEvaluator.HitRateEvaluator
 ndcg=main.recommenderEvaluator.NDCGEvaluator
+precision=main.recommenderEvaluator.PrecisionEvaluator
+recall=main.recommenderEvaluator.RecallEvaluator
