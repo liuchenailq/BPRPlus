@@ -20,6 +20,9 @@ public class BPR_baselineTest {
 	public void test() throws ClassNotFoundException {
 		Configuration conf = new Configuration();
 		conf.addResource("recommender/bpr.properties");
+		conf.setInt("rec.iterator.maximum", 10);
+		conf.setBoolean("rec.evaluator.realTime", true);
+		conf.setBoolean("rec.chart.evaluate", true);
 		RecommenderJob job = new RecommenderJob(conf);
 		job.runJob();
 	}
