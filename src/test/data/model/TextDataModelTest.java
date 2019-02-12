@@ -69,6 +69,14 @@ public class TextDataModelTest {
 		Configuration conf = new Configuration();
 		AbstractDataModel dataModel = new TextDataModel(conf);
 		dataModel.buildDataModel();
+		SparseMatrix test = dataModel.getTestMatrix();
+		SparseMatrix train = dataModel.getTrainMatrix();
+		assert test.getM() == train.getM();
+		for(int u =0;u< test.getM(); u++) {
+			System.out.println(test.getViewRow(u));
+			System.out.println(train.getViewRow(u));
+		}
+		
 		
 	}
 	

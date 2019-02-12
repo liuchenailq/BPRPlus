@@ -25,12 +25,11 @@ public class LOODataSplitter extends AbstractDataSplitter{
 		//将每个用户的评分按时间降序排列
 		dataConvert.dataFrame.sortDataByTime(true);
 		trainMatrix = new SparseMatrix(dataConvert.getUserCount(), dataConvert.getItemCount());
-		testMatrix = new SparseMatrix(dataConvert.getUserCount(), 1);
+		testMatrix = new SparseMatrix(dataConvert.getUserCount(), dataConvert.getItemCount());
 		for(int u = 0; u < dataConvert.getUserCount(); u++) {
 			ArrayList<Rating> rs = dataConvert.dataFrame.getData().get(u);
 			if(rs.size() > 1) { 
-				//LOG.info("用户" + u + ":" + rs.get(0).itemId);
-				testMatrix.setValue(u, 0, rs.get(0).score);
+				testMatrix.setValue(u, rs.get(0).itemId, rs.get(0).score);
 			}
 			for(int i = 1; i < rs.size(); i++) {
 				trainMatrix.setValue(u, rs.get(i).itemId, rs.get(i).score);

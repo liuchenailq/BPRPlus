@@ -35,10 +35,14 @@ public abstract class AbstractMFRecommender extends AbstractTopNRecommender{
 		adaptive = conf.getBoolean("rec.learnRate.adaptive", false);
 		reg = conf.getDouble("rec.iterator.regularization", 0.01);
 		U = new DenseMatrix(userCount, factors);
-		U.init(0, 0.1);
+		U.init(0, 0.01);
 		V = new DenseMatrix(itemCount, factors);
-		V.init(0, 0.1);
+		V.init(0, 0.01);
 		losses = new double[maxIter];
+		
+		//输出模型参数
+		String modelPars = "TopN="+TopN +",factors=" + factors + ",maxIter=" + maxIter+",learnRate="+learnRate+",adaptive="+adaptive+",reg="+reg;
+		LOG.info(modelPars);
 	}
 	
 	@Override
@@ -50,10 +54,10 @@ public abstract class AbstractMFRecommender extends AbstractTopNRecommender{
 	 * 在每次迭代后，自动更新学习速率
 	 */
 	public void updateLearnRate(int iter) {
-		lastLoss = loss;
 		if(adaptive && iter > 1) {
 			learnRate = Math.abs(lastLoss) > Math.abs(loss) ? learnRate * 1.05f : learnRate * 0.5f;
 		}
+		lastLoss = loss;
 	}
 
 }

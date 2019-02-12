@@ -22,6 +22,10 @@ public class HitRateEvaluator extends AbstractRecommenderEvaluator{
 
 	@Override
 	public double evaluate(RecommendList truthList, RecommendList recommendList) {
+		if(truthList.size() == 0) {
+			return 0d;
+		}
+		
 		int hitTotla = 0;
 		int sum = 0;
 		for(int u = 0; u< truthList.size(); u++) {
@@ -42,7 +46,7 @@ public class HitRateEvaluator extends AbstractRecommenderEvaluator{
 				new BPRPlusException("数据集划分方法不是留一法！");
 			}
 		}
-		return sum > 0 ? 1.0 * hitTotla / sum : 0d;
+		return sum > 0 ? (1.0 * hitTotla) / sum : 0d;
 	}
 
 }
