@@ -6,6 +6,7 @@ textdataappender=main.data.appender.TextDataAppender
 loo=main.data.splitter.LOODataSplitter
 #Recommender
 bpr_baseline=main.recommender.BPR_baseline
+bpr_dns=main.recommender.BPR_DNS
 #Evaluator
 hitrate=main.recommenderEvaluator.HitRateEvaluator
 ndcg=main.recommenderEvaluator.NDCGEvaluator
