@@ -90,9 +90,9 @@ public class TextDataModelTest {
 		AbstractDataModel dataModel = new TextDataModel(conf);
 		dataModel.buildDataModel();
 		SparseMatrix viewmatrix = dataModel.getAuxiliaryMatrix("view");
-		System.out.println(viewmatrix.getNonzeroCount());
-		System.out.println(viewmatrix.getRow(0));
-		System.out.println(viewmatrix.getRow(0).getNonzeroCount());
+		for(int u =0; u<viewmatrix.getM(); u++) {
+			System.out.println(viewmatrix.getViewRow(u));
+		}
 		
 	}
 

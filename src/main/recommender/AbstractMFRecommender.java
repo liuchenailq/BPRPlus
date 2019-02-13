@@ -41,7 +41,7 @@ public abstract class AbstractMFRecommender extends AbstractTopNRecommender{
 		losses = new double[maxIter];
 		
 		//输出模型参数
-		String modelPars = "TopN="+TopN +",factors=" + factors + ",maxIter=" + maxIter+",learnRate="+learnRate+",adaptive="+adaptive+",reg="+reg;
+		String modelPars = this.getClass().getSimpleName()+":TopN="+TopN +",factors=" + factors + ",maxIter=" + maxIter+",learnRate="+learnRate+",adaptive="+adaptive+",reg="+reg;
 		LOG.info(modelPars);
 	}
 	

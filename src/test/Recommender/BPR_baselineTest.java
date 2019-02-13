@@ -25,9 +25,9 @@ public class BPR_baselineTest {
 		Configuration conf = new Configuration();
 		conf.addResource("recommender/bpr.properties");
 		conf.setInt("rec.recommender.topn", 100);
-		conf.setInt("rec.iterator.maximum", 200);
-		conf.setBoolean("rec.evaluator.realTime", true);
-		conf.setBoolean("rec.chart.loss", false);
+		conf.setInt("rec.iterator.maximum", 500);
+		conf.setBoolean("rec.evaluator.realTime", false);
+		conf.setBoolean("rec.chart.loss", true);
 		conf.setBoolean("rec.chart.evaluate", false);
 		RecommenderJob job = new RecommenderJob(conf);
 		job.runJob();

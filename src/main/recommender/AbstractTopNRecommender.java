@@ -15,6 +15,7 @@ import main.configure.Configuration;
 import main.data.model.AbstractDataModel;
 import main.data_structure.RecommendList;
 import main.data_structure.SparseMatrix;
+import main.exception.BPRPlusException;
 import main.recommenderEvaluator.AbstractRecommenderEvaluator;
 import main.util.ChartUtil;
 import main.util.DriverClassUtil;
@@ -222,6 +223,13 @@ public abstract class AbstractTopNRecommender {
 				LOG.info(evaluator.getClass().getSimpleName() + ": " + value);
 			}
 		}	
+	}
+	
+	public SparseMatrix getauxiliaryMatrix(String key) {
+		if(!auxiliaryMatrixs.containsKey(key)) {
+			new BPRPlusException("没有key为"+key+"的辅助反馈数据！");
+		}
+		return auxiliaryMatrixs.get(key);
 	}
 
 }
